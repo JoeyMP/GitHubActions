@@ -17,4 +17,4 @@ jobs:
     
     steps:
      - name: Hola Mundo
-       run: echo "Hola Mundo Segundo"
+       run: echo "Hola Mundo ${{github.ref}}"
