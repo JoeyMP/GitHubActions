@@ -12,6 +12,15 @@ jobs:
      - name: Hola Mundo
        run: echo "Hola Mundo $NAME"
 
+     - name: Working dir
+       run: ls -al
+       
+     - name: Actions
+       uses: actions/checkout@v4
+    
+     - name: Working dir afeter actions
+       run: ls -al
+
   second_job:
     if: ${{ github.ref == 'refs/heads/main'}}
     needs: first_job
