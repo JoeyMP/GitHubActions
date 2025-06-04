@@ -41,10 +41,10 @@ jobs:
      SALIDA: ${{needs.first_job.outputs.salida}}
     
     steps:
-     - name: Hola Mundo
+     - name: Print branch
        run: echo "Hola Mundo ${{github.ref}}"
 
      - name: print salida
-       run: echo "$SALIDA
+       run: echo "$SALIDA"
 
     
