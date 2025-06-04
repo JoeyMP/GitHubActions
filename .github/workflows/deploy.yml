@@ -18,7 +18,7 @@ jobs:
      - name: Actions
        uses: actions/checkout@v4
     
-     - name: Working dir afeter actions
+     - name: Working dir after actions
        run: ls -al
 
   second_job:
@@ -29,3 +29,10 @@ jobs:
     steps:
      - name: Hola Mundo
        run: echo "Hola Mundo ${{github.ref}}"
+
+     - name: set output
+       id: step_1
+       run: echo "my_variable=Hola Mundo" >> $GITHUB_OUTPUT
+    
+     - name: get output
+       run: echo "${{steps.step_1.outputs.my_variable}}"
