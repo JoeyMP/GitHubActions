@@ -42,13 +42,22 @@ jobs:
       - name: upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: public
+          path: public/
 
   deploy:
     #if: ${{always()}}
     runs-on: ubuntu-latest
     needs: build
 
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{steps.deployment-pages.outputs.page_url}}
+
     steps:
       - name: Deploy
-        run: echo "deploy"
+        id: deployment-pages
+        uses: actions/deploy-pages@v4
