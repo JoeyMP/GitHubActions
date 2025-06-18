@@ -1,0 +1,22 @@
+name: Deploy to server
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup ssh
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+         ssh-private-key: ${{secrets.SSH_KEY}}
+      
+      - name: create file
+        run: ssh -o StrictHostKeyChecking=no azureuser@4.227.181.213 touch hol.txt
+        
+      - name: deploy to server #create public/private key on the server-vm, copy public key to github setting/deploy keys
+        run: bash deploy.sh
+      
